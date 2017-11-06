@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Manager extends Employee {
 	
-	public Manager(String name) {
-		super(name);
+	public Manager(String name, String city) {
+		super(name, city);
 	}
 
 	public List<Employee> employees;
