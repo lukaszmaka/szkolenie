@@ -44,9 +44,7 @@ public class Lambdas {
 		employees.add(new Employee("Grazyna Nowak", "Warszawa"));
 		employees.add(new Employee("Janusz Bak", "Gdansk"));
 		employees.add(new Employee("Arkadiusz Marks", "Wroclaw"));
-		employees.add(new Employee("Jan Nowak", "Wroclaw"));
-		
-		
+		employees.add(new Employee("Jan Nowak", "Wroclaw"));		
 		
 		employees.stream()
 			.filter(e -> e.getCity().equals("Wroclaw"))
@@ -67,5 +65,28 @@ public class Lambdas {
 			.distinct()
 			.forEach(System.out::println);
 		
+		
+//		IntStream.range(1, 30).peek(e -> e % 3 == 0 ? System.out.println(e + "Fizz") : (e % 5 == 0 ? System.out.println(e + "Buzz") : System.out.println(e)));
+		
+//		IntStream.range(1, 30).peek(e -> e % 3 == 0 ? System.out.println(e + "Fizz")).forEach(e -> System.out.println());
+		System.out.println();
+		
+		IntStream.range(1, 31)
+			.peek(e -> System.out.print(e))
+			.peek(e -> System.out.print(e % 3 == 0 ? "Fizz" : ""))
+			.peek(e -> System.out.print(e % 5 == 0 ? "Buzz" : ""))
+			.forEach(e -> System.out.println());
+		
+		
+		
+	}
+	
+	@Test
+	public void debugTest() {
+		IntStream.range(1, 31)
+		.peek(e -> System.out.print(e))
+		.peek(e -> System.out.print(e % 3 == 0 ? "Fizz" : ""))
+		.peek(e -> System.out.print(e % 5 == 0 ? "Buzz" : ""))
+		.forEach(e -> System.out.println());
 	}
 }

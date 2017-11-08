@@ -1,18 +1,10 @@
 package com.aptitude.trainingW2;
 
-import com.google.common.base.MoreObjects.ToStringHelper;
 
 public class Employee implements Comparable<Employee>{
 	private String name;
 	private String city;
-	
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
+	private int salary;
 
 	public Employee(String name, String city) {
 		this.name = name;
@@ -26,6 +18,23 @@ public class Employee implements Comparable<Employee>{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	public int getSalary() {
+		return salary;
+	}
+	
+	public <T extends Employee> T setSalary(int salary) {
+		this.salary = salary;
+		return (T) this;
+	}
 
 	@Override
 	public int compareTo(Employee o) {
@@ -34,6 +43,6 @@ public class Employee implements Comparable<Employee>{
 	
 	@Override
 	public String toString() {
-		return name + " " + city;
+		return name + " " + city + " " + salary;
 	}
 }
