@@ -1,5 +1,7 @@
 package com.aptitude.trainingW2;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.stream.Stream;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Test;
+
+import com.google.common.collect.Streams;
 
 public class EmployeesStreams {
 
@@ -129,11 +133,31 @@ public class EmployeesStreams {
 	
 	@Test
 	public void parallel() {
-		IntStream.range(0, 10000)
-			.parallel()
-			.filter(e -> e % 6 == 0)
-			.peek(e -> System.out.println(Thread.currentThread().getName()))
-			.forEach(e -> System.out.println(e));
+//		IntStream.range(0, 10000)
+//			.parallel()
+//			.filter(e -> e % 6 == 0)
+//			.peek(e -> System.out.println(Thread.currentThread().getName()))
+//			.forEach(e -> System.out.println(e));
+//		
+//		Comparator<Employee> com = Comparator.comparing(e -> e.getSalary());
+//		com.reversed();
+		
+//		Arrays.stream(Employee.class.getMethods())
+//			.filter(e -> (e.getDeclaringClass() != Object.class))
+//			.forEach(System.out::println);
+		
+		
+	}
+	
+	@Test
+	public void reflection() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		
+		Employee e2 = Employee.class.getConstructor(String.class, String.class).newInstance("A", "B");
+		
+		Arrays.stream(Employee.class.getConstructors())
+			.peek(e -> System.out.print(e.getName() + ";"))
+			.peek(e -> Arrays.stream(e.getParameterTypes()).forEach(f -> System.out.print(f+";")))
+			.forEach(__ -> System.out.println());
 		
 		
 	}
