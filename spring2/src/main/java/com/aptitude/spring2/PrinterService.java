@@ -1,21 +1,23 @@
 package com.aptitude.spring2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PrinterService {
+@Primary
+public class PrinterService implements IPrinter {
 	
 	private String greeting;
 	
 	public PrinterService() {
-		this("Hello");
+		this("Printer");
 	}
 	
 	@Autowired
 	public PrinterService(PainterService painter) {
-		this("PainterConstructor");
-		System.out.println("Painter " + painter);
+		this("PrinterConstructor");
+		System.out.println("Printer " + painter);
 	}
 	
 	public PrinterService(String greeting) {
