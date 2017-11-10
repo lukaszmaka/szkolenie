@@ -18,6 +18,8 @@ import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
@@ -43,7 +45,8 @@ public class EmployeeBatch {
 		};
 	}
 	
-	
+	@Bean
+	@Scope("prototype")
 	public ItemWriter<Employee> employeeCsvWriter() {
 		FlatFileItemWriter<Employee> writer = new FlatFileItemWriter<>();
 		writer.setResource(new FileSystemResource("./employees" + System.currentTimeMillis() + ".csv"));
@@ -56,6 +59,7 @@ public class EmployeeBatch {
 	}
 	
 	@Bean
+	@Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)	
 	public Job jdbcToCsvJob(JobBuilderFactory jobBuilder, 
 							StepBuilderFactory stepBuilder, 
 							DataSource dataSource, 

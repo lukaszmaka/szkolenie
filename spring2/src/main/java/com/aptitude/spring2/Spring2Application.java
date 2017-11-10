@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableBatchProcessing
-public class Spring2Application implements InitializingBean{
+@EnableScheduling
+//public class Spring2Application implements InitializingBean{
+public class Spring2Application {
 //	
 //	@Autowired
 //	@PainterQualifier
@@ -30,21 +33,21 @@ public class Spring2Application implements InitializingBean{
 	@Autowired
 	private IEmployeeRepository employeeRepository;
 	
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		List<Employee> list = new ArrayList<>();
-		list.add(new Employee("Jan", "Kowalski", "Wroclaw", 3000));
-		list.add(new Employee("Andrzej", "Nowak", "Wroclaw", 3500));
-		list.add(new Employee("Pawel", "Polak", "Wroclaw", 2500));
-		
-		employeeRepository.save(list);
-		
-		List<Employee> list2 = new ArrayList<>();
-		list2 = employeeRepository.getAll();
-		
-		System.out.println(list2);
-		System.out.println(System.getProperty("user.dir"));
-	}	
+//	@Override
+//	public void afterPropertiesSet() throws Exception {
+//		List<Employee> list = new ArrayList<>();
+//		list.add(new Employee("Jan", "Kowalski", "Wroclaw", 3000));
+//		list.add(new Employee("Andrzej", "Nowak", "Wroclaw", 3500));
+//		list.add(new Employee("Pawel", "Polak", "Wroclaw", 2500));
+//		
+//		employeeRepository.save(list);
+//		
+//		List<Employee> list2 = new ArrayList<>();
+//		list2 = employeeRepository.getAll();
+//		
+//		System.out.println(list2);
+//		System.out.println(System.getProperty("user.dir"));
+//	}	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Spring2Application.class, args);

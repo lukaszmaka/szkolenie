@@ -14,8 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeesRestController {
 	
-	@Autowired
+//	@Autowired
 	private IEmployeeRepository employeeRepository;
+	
+	@Autowired
+	public EmployeesRestController(IEmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
+	}
 	
 	@RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
 	public List<Employee> listEmployees() {

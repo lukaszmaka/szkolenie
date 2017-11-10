@@ -1,9 +1,12 @@
 aptitude:
   environment: staging
 spring:
+  batch:
+    job:
+      enabled: false
   datasources:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:./employee
+    url: jdbc:h2:file:/employee
     platform: all
   main:
     bannerMode: "off"
